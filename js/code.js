@@ -54,7 +54,7 @@ function doLogin()
 
 				saveCookie();
 	
-				window.location.href = "contacts.html";
+				window.location.href = "contacts.html"; //changed from contacts.html to color.html
 			}
 		};
 		xhr.send(jsonPayload);
