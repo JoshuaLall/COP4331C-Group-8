@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account - The Registry Co</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400,700,900&family=Inter:wght@300,400,500,600&display=swap"
+        rel="stylesheet">
+
+    <link href="css/styles.css" rel="stylesheet">
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+</head>
+
+<body>
+
+    <a href="#registerDiv" class="skip-link">Skip to registration</a>
+
+    <nav role="navigation" class="top-nav-left">
+        <a href="index.html" aria-label="Return to homepage">
+            <img src="images/Small_logo.png" alt="Contacts Directory logo" class="nav-logo" />
+        </a>
+    </nav>
+
+    <main>
+        <header role="banner" class="hero-header">
+            <img src="images/Big_logo.png" alt="The Registry Co" class="hero-logo" />
+            <h1 class="masthead">The Registry Co.</h1>
+            <p class="tagline">Personal Contact Management</p>
+            <hr class="masthead-rule" aria-hidden="true">
+        </header>
+
+        <section id="registerDiv" class="login-section" aria-labelledby="register-heading">
+            <h2 id="register-heading" class="section-heading">Create Account</h2>
+
+            <form id="registerForm" onsubmit="event.preventDefault(); registerUser();" novalidate>
+                <div class="form-group">
+                    <label for="registerFirstName" class="form-label">First Name</label>
+                    <input type="text" id="registerFirstName" name="firstname" class="form-input"
+                        placeholder="Enter first name" required aria-required="true" autocomplete="given-name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="registerLastName" class="form-label">Last Name</label>
+                    <input type="text" id="registerLastName" name="lastname" class="form-input"
+                        placeholder="Enter last name" required aria-required="true" autocomplete="family-name" />
+                </div>
+
+                <div class="form-group">
+                    <label for="registerLogin" class="form-label">Username</label>
+                    <input type="text" id="registerLogin" name="username" class="form-input"
+                        placeholder="Choose username" required aria-required="true" autocomplete="username" />
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPassword" class="form-label">Password</label>
+                    <input type="password" id="registerPassword" name="password" class="form-input"
+                        placeholder="Create password" required aria-required="true" autocomplete="new-password" />
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" id="registerSubmitButton" class="btn btn-primary">
+                        Register
+                    </button>
+                    <a href="index.html" class="btn btn-secondary">
+                        Back to Login
+                    </a>
+                </div>
+
+                <div id="registerResult" class="message-area" role="alert" aria-live="polite" aria-atomic="true"></div>
+
+            </form>
+        </section>
+
+        <footer role="contentinfo" class="page-footer">
+            <p class="footer-text">Est. 2025</p>
+        </footer>
+    </main>
+
+</body>
+
+</html>

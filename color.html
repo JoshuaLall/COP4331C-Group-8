@@ -1,46 +1,141 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-	<title>Contacts App</title>
-	<script type="text/javascript" src="js/code.js"></script>
-    <link href="css/styles.css" rel="stylesheet">	
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-	
-	<script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function() 
-	{
-		readCookie();
-	}, false);
-	</script>
-	
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacts - The Registry Co</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400,700,900&family=Inter:wght@300,400,500,600&display=swap"
+    rel="stylesheet">
+
+  <link href="css/styles.css" rel="stylesheet">
+  <script type="text/javascript" src="js/code.js"></script>
+
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      // readCookie(); // TEMPORARILY COMMENTED OUT FOR STYLING
+    }, false);
+
+    function showAddContactModal() {
+      document.getElementById('addContactModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAddContactModal() {
+      document.getElementById('addContactModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+      document.getElementById('addContactForm').reset();
+      document.getElementById('contactAddResult').innerHTML = '';
+    }
+
+    window.onclick = function (event) {
+      const modal = document.getElementById('addContactModal');
+      if (event.target === modal) {
+        closeAddContactModal();
+      }
+    }
+  </script>
 </head>
+
 <body>
 
-<h1 id="title">Contacts App</h1>
+  <a href="#accessUIDiv" class="skip-link">Skip to contacts</a>
 
-<div id="loggedInDiv">
-	<span id="userName"></span><br />
-	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button> 
-</div>
+  <nav role="navigation" class="top-nav-left">
+    <a href="index.html" aria-label="Return to homepage">
+      <img src="images/Small_logo.png" alt="The Registry Co logo" class="nav-logo" />
+    </a>
+  </nav>
 
-<div id="accessUIDiv">
-  <br />
+  <main>
+    <header role="banner" class="hero-header">
+      <img src="images/Big_logo.png" alt="The Registry Co" class="hero-logo" />
+      <h1 class="masthead">The Registry Co.</h1>
+      <p class="tagline">Personal Contact Management</p>
+      <hr class="masthead-rule" aria-hidden="true">
+    </header>
 
-  <!-- SEARCH -->
-  <input type="text" id="searchText" placeholder="Search Contacts"/>
-  <button type="button" id="searchContactButton" class="buttons" onclick="searchContacts();"> Search Contacts </button><br />
-  <span id="contactSearchResult"></span>
+    <section id="loggedInDiv" class="user-info-section">
+      <p class="welcome-text">Welcome, <span id="userName"></span></p>
+      <button type="button" id="logoutButton" class="btn btn-secondary" onclick="doLogout();">Log Out</button>
+    </section>
 
-  <p id="contactsList"></p><br /><br />
+    <section id="accessUIDiv" class="contacts-section" aria-labelledby="contacts-heading">
+      <h2 id="contacts-heading" class="section-heading">Search Contacts</h2>
 
-  <!-- ADD -->
-  <input type="text" id="contactName" placeholder="First Name"/>
-  <input type="text" id="contactLastName" placeholder="Last Name"/>
-  <input type="text" id="contactPhone" placeholder="Phone"/>
-  <input type="text" id="contactEmail" placeholder="Email"/>
+      <div class="search-container">
+        <div class="form-group">
+          <label for="searchText" class="form-label">Search</label>
+          <input type="text" id="searchText" class="form-input" placeholder="Search contacts by name"
+            aria-label="Search contacts" />
+        </div>
+        <button type="button" id="searchContactButton" class="btn btn-primary" onclick="searchContacts();">
+          Search Contacts
+        </button>
+        <div id="contactSearchResult" class="message-area" role="alert" aria-live="polite"></div>
+      </div>
 
-  <button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
-  <span id="contactAddResult"></span>
-</div>
+      <div id="contactsList" class="contacts-list"></div>
+
+      <div class="add-contact-button-container">
+        <button type="button" id="showAddContactButton" class="btn btn-primary" onclick="showAddContactModal();">
+          Add New Contact
+        </button>
+      </div>
+    </section>
+
+    <div id="addContactModal" class="modal" role="dialog" aria-labelledby="modal-heading" aria-modal="true">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeAddContactModal();" aria-label="Close dialog">&times;</button>
+
+        <h2 id="modal-heading" class="section-heading">Add New Contact</h2>
+
+        <form id="addContactForm" onsubmit="event.preventDefault(); addContact();" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactName" class="form-label">First Name</label>
+              <input type="text" id="contactName" class="form-input" placeholder="First name" required
+                aria-required="true" />
+            </div>
+
+            <div class="form-group">
+              <label for="contactLastName" class="form-label">Last Name</label>
+              <input type="text" id="contactLastName" class="form-input" placeholder="Last name" required
+                aria-required="true" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactPhone" class="form-label">Phone</label>
+              <input type="tel" id="contactPhone" class="form-input" placeholder="Phone number" required
+                aria-required="true" />
+            </div>
+
+            <div class="form-group">
+              <label for="contactEmail" class="form-label">Email</label>
+              <input type="email" id="contactEmail" class="form-input" placeholder="Email address" required
+                aria-required="true" />
+            </div>
+          </div>
+
+          <button type="submit" id="addContactButton" class="btn btn-primary">
+            Add Contact
+          </button>
+          <div id="contactAddResult" class="message-area" role="alert" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+
+    <footer role="contentinfo" class="page-footer">
+      <p class="footer-text">Est. 2025</p>
+    </footer>
+  </main>
 
 </body>
+
 </html>
