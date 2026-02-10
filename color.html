@@ -19,21 +19,27 @@
 
 <div id="loggedInDiv">
 	<span id="userName"></span><br />
-	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+	<button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button> 
 </div>
 
 <div id="accessUIDiv">
-	<br />
+  <br />
 
-	<input type="text" id="searchText" placeholder="Color To Search For"/>
-	<button type="button" id="searchColorButton" class="buttons" onclick="searchColor();"> Search Contacts </button><br />
-	<span id="colorSearchResult"></span>
-	<p id="colorList">
-	</p><br /><br />
+  <!-- SEARCH -->
+  <input type="text" id="searchText" placeholder="Search Contacts"/>
+  <button type="button" id="searchContactButton" class="buttons" onclick="searchContacts();"> Search Contacts </button><br />
+  <span id="contactSearchResult"></span>
 
-	<input type="text" id="colorText" placeholder="Color To Add">
-	<button type="button" id="addColorButton" class="buttons" onclick="addColor();"> Add Contact </button><br />
-	<span id="colorAddResult"></span>
+  <p id="contactsList"></p><br /><br />
+
+  <!-- ADD -->
+  <input type="text" id="contactName" placeholder="First Name"/>
+  <input type="text" id="contactLastName" placeholder="Last Name"/>
+  <input type="text" id="contactPhone" placeholder="Phone"/>
+  <input type="text" id="contactEmail" placeholder="Email"/>
+
+  <button type="button" id="addContactButton" class="buttons" onclick="addContact();"> Add Contact </button><br />
+  <span id="contactAddResult"></span>
 </div>
 
 </body>

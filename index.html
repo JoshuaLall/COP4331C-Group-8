@@ -27,8 +27,7 @@
 	<section id="loginDiv" class="login-section" aria-labelledby="login-heading">
 		<h2 id="login-heading" class="section-heading">Account Access</h2>
 		
-		<form id="loginForm" onsubmit="event.preventDefault(); doLogin();" novalidate>
-			
+		<form id="loginForm" onsubmit="event.preventDefault(); doLogin();" novalidate> 
 			<div class="form-group">
 				<label for="loginName" class="form-label">Username</label>
 				<input 
@@ -61,7 +60,7 @@
 				<button type="submit" id="loginButton" class="btn btn-primary">
 					Log In
 				</button>
-				<button type="button" id="registerButton" class="btn btn-secondary" onclick="doRegister();">
+				<button type="button" id="registerButton" class="btn btn-secondary" onclick="doRegister();"> 
 					Create Account
 				</button>
 			</div>
@@ -70,6 +69,19 @@
 
 		</form>
 	</section>
+
+	<hr class="masthead-rule" />
+	
+	<span id="inner-title">Create Account</span>
+	
+	<div id="registerBox">
+	<input type="text" id="registerFirstName" placeholder="First Name" />
+	<input type="text" id="registerLastName" placeholder="Last Name" />
+	<input type="text" id="registerLogin" placeholder="Username" />
+	<input type="password" id="registerPassword" placeholder="Password" />
+	<button type="button" id="registerSubmitButton" class="buttons" onclick="registerUser();"> Register </button>
+	<span id="registerResult" class="message-area"></span>
+</div>
 
 	<footer role="contentinfo" class="page-footer">
 		<p class="footer-text">Est. 2025</p>

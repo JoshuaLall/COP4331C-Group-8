@@ -3,6 +3,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+header('Content-type: application/json');
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
+
 $inData = getRequestInfo();
 if ($inData == null) returnWithError("Invalid JSON");
 if (!isset($inData["contactId"], $inData["userId"])) returnWithError("Missing contactId or userId");
@@ -21,7 +25,7 @@ function addField(&$fields, &$params, &$types, $inData, $key, $sqlCol, $typeChar
     if (array_key_exists($key, $inData)) {
         $fields[] = "$sqlCol=?";
         $params[] = $inData[$key];
-        $types   .= $typeChar;
+        $types .= $typeChar;
     }
 }
 
@@ -32,32 +36,41 @@ addField($fields, $params, $types, $inData, "email",     "Email",     "s");
 
 if (count($fields) == 0) returnWithError("No fields to update");
 
-$conn = new mysqli("142.93.73.245", "admin", "12345678Ab", "COP4331");
-if ($conn->connect_error) returnWithError($conn->connect_error);
+try
+{
+    $conn = new mysqli("localhost", "admin", "12345", "COP4331");
+    $conn->set_charset("utf8mb4");
 
-$sql = "UPDATE Contacts SET " . implode(", ", $fields) . " WHERE ID=? AND UserID=?";
-$stmt = $conn->prepare($sql);
-if (!$stmt) returnWithError($conn->error);
+    // add WHERE params
+    $params[] = $contactId;
+    $params[] = $userId;
+    $types   .= "ii";
 
-// add WHERE params
-$params[] = $contactId;
-$params[] = $userId;
-$types   .= "ii";
+    $sql = "UPDATE Contacts SET " . implode(", ", $fields) . " WHERE ID=? AND UserID=?";
+    $stmt = $conn->prepare($sql);
 
-// bind dynamically
-$stmt->bind_param($types, ...$params);
+    // bind dynamically (must be references)
+    $bindNames = [];
+    $bindNames[] = $types;
+    for ($i = 0; $i < count($params); $i++)
+    {
+        $bindNames[] = &$params[$i];
+    }
+    call_user_func_array([$stmt, 'bind_param'], $bindNames);
 
-$stmt->execute();
+    $stmt->execute();
 
-if ($stmt->affected_rows == 0) {
     $stmt->close();
     $conn->close();
-    returnWithError("No contact updated (not found or no changes)");
+
+    sendResultInfoAsJson('{"error":""}');
+    exit();
+}
+catch (Throwable $e)
+{
+    returnWithError($e->getMessage());
 }
 
-$stmt->close();
-$conn->close();
-sendResultInfoAsJson('{"error":""}');
 
 function getRequestInfo()
 {
