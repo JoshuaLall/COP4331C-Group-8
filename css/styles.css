@@ -1,6 +1,4 @@
-/* ========================================
-   GLOBAL STYLES
-   ======================================== */
+/* GLOBAL STYLES */
 
 * {
 	margin: 0;
@@ -51,9 +49,7 @@ main {
 }
 
 
-/* ========================================
-   TYPOGRAPHY
-   ======================================== */
+/* TYPOGRAPHY*/
 
 #title,
 .masthead {
@@ -124,9 +120,8 @@ main {
 }
 
 
-/* ========================================
-   NAVIGATION (ALL PAGES)
-   ======================================== */
+
+/* NAVIGATION (ALL PAGES)*/
 
 .top-nav-left {
 	position: absolute;
@@ -141,9 +136,7 @@ main {
 }
 
 
-/* ========================================
-   HEADER / HERO (ALL PAGES)
-   ======================================== */
+/* HEADER / HERO (ALL PAGES)*/
 
 .hero-header {
 	margin: 0;
@@ -172,9 +165,7 @@ main {
 }
 
 
-/* ========================================
-   FORMS (ALL PAGES)
-   ======================================== */
+/* FORMS (ALL PAGES) */
 
 .form-group {
 	margin-bottom: 24px;
@@ -263,9 +254,7 @@ select:focus {
 }
 
 
-/* ========================================
-   BUTTONS (ALL PAGES)
-   ======================================== */
+/*BUTTONS (ALL PAGES)*/
 
 .buttons,
 .btn {
@@ -350,9 +339,7 @@ select:focus {
 }
 
 
-/* ========================================
-   MESSAGES / ALERTS (ALL PAGES)
-   ======================================== */
+/*MESSAGES / ALERTS (ALL PAGES)*/
 
 #loginResult,
 #colorAddResult,
@@ -396,9 +383,7 @@ select:focus {
 }
 
 
-/* ========================================
-   FOOTER (ALL PAGES)
-   ======================================== */
+/*FOOTER (ALL PAGES)*/
 
 .page-footer {
 	text-align: center;
@@ -416,9 +401,7 @@ select:focus {
 }
 
 
-/* ========================================
-   INDEX.HTML - LOGIN PAGE
-   ======================================== */
+/*INDEX.HTML - LOGIN PAGE*/
 
 #loginDiv,
 #loggedInDiv,
@@ -437,9 +420,7 @@ select:focus {
 }
 
 
-/* ========================================
-   REGISTER.HTML - REGISTRATION PAGE
-   ======================================== */
+/*REGISTER.HTML - REGISTRATION PAGE*/
 
 #registerDiv {
 	background: #fff;
@@ -451,9 +432,7 @@ select:focus {
 }
 
 
-/* ========================================
-   CONTACTS.HTML - CONTACTS PAGE
-   ======================================== */
+/*CONTACTS.HTML - CONTACTS PAGE*/
 
 .user-info-section {
 	text-align: center;
@@ -559,9 +538,7 @@ select:focus {
 }
 
 
-/* ========================================
-   MODAL (CONTACTS PAGE)
-   ======================================== */
+/*MODAL (CONTACTS PAGE)*/
 
 .modal {
 	display: none;
@@ -604,9 +581,7 @@ select:focus {
 }
 
 
-/* ========================================
-   RESPONSIVE DESIGN
-   ======================================== */
+/*RESPONSIVE DESIGN*/
 
 @media (max-width: 640px) {
 
@@ -638,9 +613,7 @@ select:focus {
 }
 
 
-/* ========================================
-   ACCESSIBILITY
-   ======================================== */
+/*ACCESSIBILITY*/
 
 @media (prefers-contrast: high) {
 
